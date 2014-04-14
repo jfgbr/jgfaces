@@ -9,7 +9,7 @@ import javax.faces.convert.FacesConverter;
 import com.jgalante.util.Faces;
 import com.jgalante.util.Parameter;
 
-@FacesConverter(value="parameterConverter",forClass=Parameter.class)
+@FacesConverter(forClass=Parameter.class)
 public class ParameterConverter implements Converter{
 
 	@SuppressWarnings("unchecked")
@@ -20,7 +20,6 @@ public class ParameterConverter implements Converter{
 		if (component instanceof UIInput) {
 			Parameter<Object> parameter = (Parameter<Object>)((UIInput)component).getValue();
 			parameter.setValue(Faces.convert(value, Faces.getConverter(parameter.getType())));
-//			obj = Faces.convert(value, Faces.getConverter(parameter.getType()));
 			obj = parameter;			
 		}		
 		
