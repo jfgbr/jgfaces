@@ -1,11 +1,5 @@
 package com.jgalante.util;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Member;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-
 import javax.faces.application.Application;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
@@ -76,43 +70,6 @@ public class Faces {
 		return (FacesContext) FacesContext.getCurrentInstance();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static <T> Class<T> getGenericTypeArgument(final Field field, final int idx) {
-		final Type type = field.getGenericType();
-		final ParameterizedType paramType = (ParameterizedType) type;
-		
-		return (Class<T>) paramType.getActualTypeArguments()[idx];
-	}
-
-	/**
-	 * <p>Return the parametized type passed to members (fields or methods) that accepts Generics.</p>
-	 * 
-	 * @see #getGenericTypeArgument(Field field, int idx)
-	 * 
-	 */
-	public static <T> Class<T> getGenericTypeArgument(final Member member, final int idx) {
-		Class<T> result = null;
-
-		if (member instanceof Field) {
-			result = getGenericTypeArgument((Field) member, idx);
-		} else if (member instanceof Method) {
-			result = getGenericTypeArgument((Method) member, idx);
-		}
-
-		return result;
-	}
-
-	/**
-	 * <p>Return the parametized type passed to methods that accepts Generics.</p>
-	 * 
-	 * @see #getGenericTypeArgument(Field field, int idx)
-	 * 
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> Class<T> getGenericTypeArgument(final Method method, final int pos) {
-		return (Class<T>) method.getGenericParameterTypes()[pos];
-	}
-
 	public static boolean isEmpty(final String value) {
 		return value == null || value.trim().isEmpty();
 	}

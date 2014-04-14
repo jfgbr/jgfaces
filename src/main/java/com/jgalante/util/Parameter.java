@@ -25,7 +25,7 @@ public class Parameter<T extends Object> implements Serializable {
 		String key = ip.getAnnotated().getAnnotation(Param.class).value();
 		flashScope = "flash".equals(ip.getAnnotated().getAnnotation(Param.class).scope());
 		
-		type = Faces.getGenericTypeArgument(ip.getMember(), 0);
+		type = Reflections.getGenericTypeArgument(ip.getMember(), 0);
 		
 		if (key.isEmpty()) {
 			this.key = ip.getMember().getName();
