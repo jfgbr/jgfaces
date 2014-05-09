@@ -35,7 +35,9 @@ public class Parameter<T extends Object> implements Serializable {
 		
 	}
 	
-	
+	public void keep() {
+		setValue(value);
+	}
 
 	public String getKey() {
 		return key;
